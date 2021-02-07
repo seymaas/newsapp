@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/entity/api.dart';
-import 'package:newsapp/funcs.dart/firebaseFuncs.dart';
+import 'package:newsapp/funcs/firebaseFuncs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -81,7 +81,7 @@ class _TagPageState extends State<TagPage> {
                           tag: category.result[index].url,
                           child: GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage(category.result[index].name,category.result[index].image,category.result[index].url,category.result[index].description,category.result[index].source)));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage(category.result[index].name,category.result[index].image,category.result[index].url,category.result[index].description,category.result[index].source,false)));
                               },
                               //show datas through TagWidget
                               child: TagWidget(category.result[index].name,

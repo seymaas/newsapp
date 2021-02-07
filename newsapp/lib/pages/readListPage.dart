@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:newsapp/funcs.dart/firebaseFuncs.dart';
+import 'package:newsapp/funcs/firebaseFuncs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -65,32 +65,36 @@ class _ListPageState extends State<ListPage> {
                   height: (MediaQuery.of(context).size.height) / 1.6,
                   child: ListView(
                       children: snapshot.data.docs
-                          .map((doc) => GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DetailsPage(
-                                            doc["task_title"],
-                                            doc["image"],
-                                            doc["url"],
-                                            doc["description"],
-                                            doc["source"],)));
-                              },
-                              child: Slidable(
-                                actionPane: SlidableDrawerActionPane(),
-                                secondaryActions: [IconSlideAction(
-                              color: Colors.red,
-                              foregroundColor: Colors.white,
-                              icon: Icons.cancel_outlined,
-                              onTap: () {
-                                //delete data through Slidable 
-                                FirebaseFuncs().deleteData(doc["url"], "readLater",flushBarerrorMsg:"This news has been deleted to the Read List.",context:context);
-                              },
-                            ),],
-                                child: TagWidget(
-                                    doc["task_title"], doc["image"]),
-                              )))
+                          .map((doc) => Hero(
+                            tag: doc["url"],
+                                                      child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailsPage(
+                                              doc["task_title"],
+                                              doc["image"],
+                                              doc["url"],
+                                              doc["description"],
+                                              doc["source"],
+                                              false)));
+                                },
+                                child: Slidable(
+                                  actionPane: SlidableDrawerActionPane(),
+                                  secondaryActions: [IconSlideAction(
+                                color: Colors.red,
+                                foregroundColor: Colors.white,
+                                icon: Icons.cancel_outlined,
+                                onTap: () {
+                                  //delete data through Slidable 
+                                  FirebaseFuncs().deleteData(doc["url"], "readLater",flushBarerrorMsg:"This news has been deleted to the Read List.",context:context);
+                                },
+                              ),],
+                                  child: TagWidget(
+                                      doc["task_title"], doc["image"]),
+                                )),
+                          ))
                           .toList()));
             }),
       ),

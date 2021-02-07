@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/widgets/detailWidget.dart';
 
 class FirebaseFuncs{
 
@@ -41,25 +40,7 @@ class FirebaseFuncs{
        } 
       
     });
-  }/*
-  getData(String url) async {
-    DetailsWidget.like = false;
-        DetailsWidget.dislike = false;
-    QuerySnapshot snap = await FirebaseFirestore.instance.collection("favorites").where("url",isEqualTo:url).get();
-    snap.docs.forEach((document) {
-      
-    if(document.exists)
-    {
-      if(document.get("status")== true)
-      {
-        
-        DetailsWidget.like = true;
-        DetailsWidget.dislike = false;
-        
-      }
-    }
-      
-  });}*/
+  }
   
   showFlushbarFun(Color color,String flushBarerrorMsg,BuildContext context) =>
     Flushbar(
@@ -68,7 +49,7 @@ class FirebaseFuncs{
         flushBarerrorMsg,
         style: TextStyle(color: Colors.teal[200]),
       ),
-      duration: Duration(seconds: 3),
+      duration: Duration(seconds: 1),
       margin: EdgeInsets.all(8),
       borderRadius: 8,
       

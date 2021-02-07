@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/funcs.dart/firebaseFuncs.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:newsapp/funcs/firebaseFuncs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -111,20 +112,36 @@ class _FavoritePageState extends State<FavoritePage> {
                       height: (MediaQuery.of(context).size.height) / 1.6,
                       child: ListView(
                           children: snapshot.data.docs
-                              .map((doc) => GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => DetailsPage(
-                                                doc["task_title"],
-                                                doc["image"],
-                                                doc["url"],
-                                                doc["description"],
-                                                doc["source"],)));
-                                  },
+                              .map((doc) => Hero(
+                                tag: doc["url"],
+                                                              child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DetailsPage(
+                                                  doc["task_title"],
+                                                  doc["image"],
+                                                  doc["url"],
+                                                  doc["description"],
+                                                  doc["source"],
+                                                  true)));
+                                    },
+                                    child: Slidable(
+                                  actionPane: SlidableDrawerActionPane(),
+                                  secondaryActions: [IconSlideAction(
+                                color: Colors.red,
+                                foregroundColor: Colors.white,
+                                icon: Icons.cancel_outlined,
+                                onTap: () {
+                                  //delete data through Slidable 
+                                  FirebaseFuncs().deleteData(doc["url"], status == true ? "favorites" : "unfavorites",flushBarerrorMsg:"This news has been deleted to the List.",context:context);
+                                },
+                            ),],
                                   child: TagWidget(
-                                      doc["task_title"], doc["image"])))
+                                      doc["task_title"], doc["image"]),
+                                )),
+                              ))
                               .toList()));
                 }),
           ),

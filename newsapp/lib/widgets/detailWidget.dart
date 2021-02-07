@@ -1,13 +1,12 @@
 
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/funcs.dart/firebaseFuncs.dart';
+import 'package:newsapp/funcs/firebaseFuncs.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsWidget extends StatefulWidget {
   final String newstitle, newsImage, newsURL, newsDescription, newsSource;
-  DetailsWidget(this.newstitle, this.newsImage, this.newsURL,this.newsDescription, this.newsSource);
+  final bool isfavoritepage;
+  DetailsWidget(this.newstitle, this.newsImage, this.newsURL,this.newsDescription, this.newsSource,this.isfavoritepage);
   @override
   _DetailsWidgetState createState() => _DetailsWidgetState();
 }
@@ -49,38 +48,39 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       ),
                     ),
                     //favorite&unfavorite
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
-                        splashColor: Colors.green[900],
-                        onTap: () {
-                          if (like == true) {
-                            setState(() {
-                              like = false;
-                              FirebaseFuncs().deleteData(widget.newsURL,"favorites");
-                            });
-                          } else {
-                            setState(() {
-                              like = true;
-                              dislike = false;
-                              FirebaseFuncs().addData(true,widget.newstitle, widget.newsDescription,widget.newsImage,widget.newsSource, widget.newsURL,"favorites",flushBarerrorMsg:"This news has been added to the Favorite List",context: context);
-                              FirebaseFuncs().deleteData(widget.newsURL,"unfavorites");
-                            });
-                          }
-                        },
-                        child: Icon(
-                          Icons.thumb_up_alt_outlined,
-                          size: 25,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
+                    
+                    //not put buttons if used for favorite page
+                    widget.isfavoritepage == true?Container() 
+                    :Expanded(
+                      flex: 2,
+                      child: Row(
+                        children: [
+                          InkWell(
+                            splashColor: Colors.green[900],
+                            onTap: () {
+                              if (like == true) {
+                                setState(() {
+                                  like = false;
+                                  FirebaseFuncs().deleteData(widget.newsURL,"favorites");
+                                });
+                              } else {
+                                setState(() {
+                                  like = true;
+                                  dislike = false;
+                                  FirebaseFuncs().addData(true,widget.newstitle, widget.newsDescription,widget.newsImage,widget.newsSource, widget.newsURL,"favorites",flushBarerrorMsg:"This news has been added to the Favorite List",context: context);
+                                  FirebaseFuncs().deleteData(widget.newsURL,"unfavorites");
+                                });
+                              }
+                            },
+                            child: Icon(
+                              Icons.thumb_up_alt_outlined,
+                              size: 25,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
                       width: 10,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
+                    ),InkWell(
                         splashColor: Colors.red[900],
                         onTap: () {
                           if (dislike == true) {
@@ -103,7 +103,11 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           color: Colors.red,
                         ),
                       ),
+                        ],
+                      ),
                     ),
+                    
+                    
                   ],
                 ),
                 Padding(
