@@ -48,9 +48,10 @@ class _MainPageState extends State<MainPage> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
+        
         decoration: NavBarDecoration(
-            colorBehindNavBar: Colors.indigo,
-            borderRadius: BorderRadius.circular(20.0)),
+            colorBehindNavBar: Colors.white,
+            borderRadius: BorderRadius.circular(10.0)),
         navBarStyle: NavBarStyle.style15,
       ),
     );

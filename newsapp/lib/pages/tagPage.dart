@@ -58,7 +58,7 @@ class _TagPageState extends State<TagPage> {
                           IconSlideAction(
                             color: Colors.teal,
                             foregroundColor: Colors.white,
-                            icon: Icons.pages,
+                            icon: Icons.book,
                             onTap: () {
                               //add data to Firebase with Slidable
                               FirebaseFuncs().addData(

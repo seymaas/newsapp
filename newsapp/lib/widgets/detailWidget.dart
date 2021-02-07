@@ -206,21 +206,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                             decoration: TextDecoration.underline),
                       )),
                 ),
+                
                 Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(right: 20, top: 20),
-                  child: Text(
-                    "Comments",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal[200],
-                        fontSize: 19,
-                        decoration: TextDecoration.underline),
-                    textAlign: TextAlign.start,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: 30),
                   child: TextField(
                     maxLines: 3,
                     autocorrect: false,
