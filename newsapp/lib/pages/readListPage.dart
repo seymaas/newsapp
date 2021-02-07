@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:newsapp/funcs/firebaseFuncs.dart';
+import 'package:newsapp/funcs/funcs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -62,7 +62,7 @@ class _ListPageState extends State<ListPage> {
               }
               //show data through TagWidget
               return Container(
-                  height: (MediaQuery.of(context).size.height) / 1.6,
+                  height: (MediaQuery.of(context).size.height) / 1.4,
                   child: ListView(
                       children: snapshot.data.docs
                           .map((doc) => Hero(
@@ -84,12 +84,12 @@ class _ListPageState extends State<ListPage> {
                                       actionPane: SlidableDrawerActionPane(),
                                       secondaryActions: [
                                         IconSlideAction(
-                                          color: Colors.red,
+                                          color: Colors.red[300],
                                           foregroundColor: Colors.white,
                                           icon: Icons.cancel_outlined,
                                           onTap: () {
                                             //delete data through Slidable
-                                            FirebaseFuncs().deleteData(
+                                            Funcs().deleteData(
                                                 doc["url"], "readLater",
                                                 flushBarerrorMsg:
                                                     "This news has been deleted to the Read List.",

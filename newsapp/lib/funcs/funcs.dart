@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
-class FirebaseFuncs {
+class Funcs {
   final databaseReference = FirebaseFirestore.instance;
 
 //add new data in firebase for favorites||unfavorites||readlater collection
@@ -40,6 +40,7 @@ class FirebaseFuncs {
     });
   }
 
+  //show notification
   showFlushbarFun(Color color, String flushBarerrorMsg, BuildContext context) =>
       Flushbar(
         backgroundColor: Colors.white,
@@ -47,7 +48,7 @@ class FirebaseFuncs {
           flushBarerrorMsg,
           style: TextStyle(color: Colors.teal[200]),
         ),
-        duration: Duration(seconds: 1),
+        duration: Duration(seconds: 2),
         margin: EdgeInsets.all(8),
         borderRadius: 8,
         flushbarPosition: FlushbarPosition.TOP,

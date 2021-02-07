@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/funcs/firebaseFuncs.dart';
+import 'package:newsapp/funcs/funcs.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsWidget extends StatefulWidget {
@@ -48,7 +48,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     ),
                     //favorite&unfavorite
 
-                    //not put buttons if used for favorite page
+                    //not put buttons if use favorite page
                     widget.isfavoritepage == true
                         ? Container()
                         : Expanded(
@@ -61,14 +61,17 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     if (like == true) {
                                       setState(() {
                                         like = false;
-                                        FirebaseFuncs().deleteData(
+                                        //undo save
+                                        Funcs().deleteData(
                                             widget.newsURL, "favorites");
                                       });
                                     } else {
                                       setState(() {
+                                        //if one button is active the other should not be
                                         like = true;
                                         dislike = false;
-                                        FirebaseFuncs().addData(
+                                        //save selected news to favorite collection when favorite button is enable 
+                                        Funcs().addData(
                                             true,
                                             widget.newstitle,
                                             widget.newsDescription,
@@ -79,11 +82,13 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                             flushBarerrorMsg:
                                                 "This news has been added to the Favorite List",
                                             context: context);
-                                        FirebaseFuncs().deleteData(
+                                        //if the favorite button is enable, check the unfavorite collection and delete same data if there is 
+                                        Funcs().deleteData(
                                             widget.newsURL, "unfavorites");
                                       });
                                     }
                                   },
+                                  //favorite icon
                                   child: Icon(
                                     Icons.thumb_up_alt_outlined,
                                     size: 25,
@@ -99,14 +104,17 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                     if (dislike == true) {
                                       setState(() {
                                         dislike = false;
-                                        FirebaseFuncs().deleteData(
+                                        //undo save
+                                        Funcs().deleteData(
                                             widget.newsURL, "unfavorites");
                                       });
                                     } else {
                                       setState(() {
+                                        //if one button is active the other should not be
                                         dislike = true;
                                         like = false;
-                                        FirebaseFuncs().addData(
+                                        //save selected news to unfavorite collection when unfavorite button is enable 
+                                        Funcs().addData(
                                             false,
                                             widget.newstitle,
                                             widget.newsDescription,
@@ -117,11 +125,13 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                             flushBarerrorMsg:
                                                 "This news has been added to the Unfavorite List.",
                                             context: context);
-                                        FirebaseFuncs().deleteData(
+                                        //if the unfavorite button is enable, check the favorite collection and delete same data if there is 
+                                        Funcs().deleteData(
                                             widget.newsURL, "favorites");
                                       });
                                     }
                                   },
+                                  //unfavorite icon
                                   child: Icon(
                                     Icons.thumb_down_outlined,
                                     size: 25,
@@ -133,6 +143,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                           ),
                   ],
                 ),
+                //line
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10, top: 10),
                   child: Divider(
@@ -141,6 +152,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     color: Colors.teal,
                   ),
                 ),
+                //image
                 Stack(
                   children: [
                     Hero(
@@ -154,7 +166,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         ),
                       ),
                     ),
-                    //source
+                    //news source on the image 
                     Positioned(
                         right: 5,
                         top: 5,
@@ -174,6 +186,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         ))
                   ],
                 ),
+                //line
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Divider(
@@ -182,6 +195,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     color: Colors.teal,
                   ),
                 ),
+                //description
                 Container(
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(top: 20, bottom: 20),
@@ -192,6 +206,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     textAlign: TextAlign.justify,
                   ),
                 ),
+                //news link
                 Container(
                   alignment: Alignment.center,
                   child: InkWell(
@@ -206,7 +221,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                             decoration: TextDecoration.underline),
                       )),
                 ),
-                
+                //bonus part comment
                 Container(
                   margin: EdgeInsets.only(top: 30),
                   child: TextField(
@@ -227,6 +242,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     ),
                   ),
                 ),
+                //bonus part button
                 Container(
                   margin: EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
@@ -238,7 +254,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     splashColor: Colors.white,
                     onPressed: () {},
                     child: Text(
-                      "Sent".toUpperCase(),
+                      "Send".toUpperCase(),
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
@@ -247,7 +263,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ],
             )));
   }
-
+  //for use link function 
   Future<void> _launch(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

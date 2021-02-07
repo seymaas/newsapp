@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/widgets/detailWidget.dart';
+import 'package:newsapp/widgets/detailsWidget.dart';
 
 class DetailsPage extends StatefulWidget {
   final String newstitle, newsImage, newsURL, newsDescription, newsSource;
@@ -18,6 +18,7 @@ class _DetailsPageState extends State<DetailsPage> {
       appBar: AppBar(
         backgroundColor: Colors.teal[200],
       ),
+      //show data through DetailsWidget
       body: DetailsWidget(widget.newstitle, widget.newsImage, widget.newsURL,
           widget.newsDescription, widget.newsSource, widget.isfavoritepage),
     );

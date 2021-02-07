@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:newsapp/funcs/firebaseFuncs.dart';
+import 'package:newsapp/funcs/funcs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -11,6 +11,7 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  //select for page
   bool status = true;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _FavoritePageState extends State<FavoritePage> {
                         },
                         child: Icon(
                           Icons.thumb_up_alt_outlined,
-                          color: Colors.teal[200],
+                          color: status == true?Colors.green: Colors.teal[200],
                         ))),
                 Expanded(
                     flex: 1,
@@ -49,7 +50,7 @@ class _FavoritePageState extends State<FavoritePage> {
                           });
                         },
                         child: Icon(Icons.thumb_down_alt_outlined,
-                            color: Colors.teal[200]))),
+                            color: status == false? Colors.red:Colors.teal[200]))),
               ],
             ),
           ),
@@ -133,12 +134,12 @@ class _FavoritePageState extends State<FavoritePage> {
                                               SlidableDrawerActionPane(),
                                           secondaryActions: [
                                             IconSlideAction(
-                                              color: Colors.red,
+                                              color: Colors.red[300],
                                               foregroundColor: Colors.white,
                                               icon: Icons.cancel_outlined,
                                               onTap: () {
                                                 //delete data through Slidable
-                                                FirebaseFuncs().deleteData(
+                                                Funcs().deleteData(
                                                     doc["url"],
                                                     status == true
                                                         ? "favorites"

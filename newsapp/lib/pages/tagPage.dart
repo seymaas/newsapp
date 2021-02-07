@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/entity/api.dart';
-import 'package:newsapp/funcs/firebaseFuncs.dart';
+import 'package:newsapp/funcs/funcs.dart';
 import 'package:newsapp/pages/detailsPage.dart';
 import 'package:newsapp/widgets/tagWidget.dart';
 
@@ -61,7 +61,7 @@ class _TagPageState extends State<TagPage> {
                             icon: Icons.book,
                             onTap: () {
                               //add data to Firebase with Slidable
-                              FirebaseFuncs().addData(
+                              Funcs().addData(
                                   false,
                                   category.result[index].name,
                                   category.result[index].description,
