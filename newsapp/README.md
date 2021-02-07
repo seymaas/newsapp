@@ -1,6 +1,7 @@
 # newsapp
 
  NEWS APP
+
  1.A newspaper application prepar with the Public. API.https://collectapi.com/api/news/news-api
 
  2.The application has 3 main pages in the navigation bar and the detail page that can be accessed from these pages.
@@ -14,22 +15,35 @@
  6.Likewise, it can be add to the "read list" with the slidable function on the page where the news list. (instead of the basket page)
 
  7.Packages;
-  http: any
-  flutter_slidable: any
-  custom_navigator: any
-  url_launcher: any
-  cloud_firestore: any
-  firebase_core: any
-  flushbar: any
-  persistent_bottom_nav_bar: any
+
+ 
+  http: any : A composable, Future-based library for making HTTP requests
+
+  flutter_slidable: any : A Flutter implementation of slidable list item with directional slide actions that can be dismissed.
+
+  url_launcher: any : A Flutter plugin for launching a URL in the mobile platform.
+
+  cloud_firestore: any : A Flutter plugin to use the Cloud Firestore
+
+  firebase_core: any : A Flutter plugin to use the Firebase Core API, which enables connecting to multiple Firebase apps.
+
+  flushbar: any : A Flutter plugin for sending notifications.
+
+  persistent_bottom_nav_bar: any : Flutter için kalıcı / statik bir alt gezinme çubuğu
+
 8.Firebase use for favorite,unfavorite and read list data.
 
 
 
 Improvements ;
+
 *user login
+
 *comment section 
+
 *send link
+
+*search 
 
 ## Getting Started
 
