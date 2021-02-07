@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class TagWidget extends StatefulWidget {
   final String tagTitle, tagImage;
   TagWidget(this.tagTitle, this.tagImage);
-
   @override
   _TagWidgetState createState() => _TagWidgetState();
 }

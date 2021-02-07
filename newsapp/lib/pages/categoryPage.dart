@@ -7,7 +7,6 @@ class CategoryPage extends StatefulWidget {
     return _CategoryPageState();
   }
 }
-
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {

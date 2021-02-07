@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Funcs {
   final databaseReference = FirebaseFirestore.instance;
 
+
 //add new data in firebase for favorites||unfavorites||readlater collection
   Future addData(
       bool status, String title, description, image, source, url, collection,

@@ -70,7 +70,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                         //if one button is active the other should not be
                                         like = true;
                                         dislike = false;
-                                        //save selected news to favorite collection when favorite button is enable 
+                                        //save selected news to favorite collection when favorite button is enable
                                         Funcs().addData(
                                             true,
                                             widget.newstitle,
@@ -82,7 +82,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                             flushBarerrorMsg:
                                                 "This news has been added to the Favorite List",
                                             context: context);
-                                        //if the favorite button is enable, check the unfavorite collection and delete same data if there is 
+                                        //if the favorite button is enable, check the unfavorite collection and delete same data if there is
                                         Funcs().deleteData(
                                             widget.newsURL, "unfavorites");
                                       });
@@ -113,7 +113,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                         //if one button is active the other should not be
                                         dislike = true;
                                         like = false;
-                                        //save selected news to unfavorite collection when unfavorite button is enable 
+                                        //save selected news to unfavorite collection when unfavorite button is enable
                                         Funcs().addData(
                                             false,
                                             widget.newstitle,
@@ -125,7 +125,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                                             flushBarerrorMsg:
                                                 "This news has been added to the Unfavorite List.",
                                             context: context);
-                                        //if the unfavorite button is enable, check the favorite collection and delete same data if there is 
+                                        //if the unfavorite button is enable, check the favorite collection and delete same data if there is
                                         Funcs().deleteData(
                                             widget.newsURL, "favorites");
                                       });
@@ -166,7 +166,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         ),
                       ),
                     ),
-                    //news source on the image 
+                    //news source on the image
                     Positioned(
                         right: 5,
                         top: 5,
@@ -263,7 +263,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ],
             )));
   }
-  //for use link function 
+
+  //for use link function
   Future<void> _launch(String url) async {
     if (await canLaunch(url)) {
       await launch(url);

@@ -57,3 +57,4 @@ class _CategoryWidgetState extends State<CategoryWidget> {
     );
   }
 }
+

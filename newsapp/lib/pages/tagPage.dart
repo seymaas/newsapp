@@ -107,7 +107,6 @@ class _TagPageState extends State<TagPage> {
           }),
     );
   }
-
   Future<dynamic> callapi() async {
     var url = "https://api.collectapi.com/news/getNews?country=tr&tag=" +
         widget.categoryTitle.toLowerCase();

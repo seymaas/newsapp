@@ -38,7 +38,8 @@ class _FavoritePageState extends State<FavoritePage> {
                         },
                         child: Icon(
                           Icons.thumb_up_alt_outlined,
-                          color: status == true?Colors.green: Colors.teal[200],
+                          color:
+                              status == true ? Colors.green : Colors.teal[200],
                         ))),
                 Expanded(
                     flex: 1,
@@ -50,7 +51,9 @@ class _FavoritePageState extends State<FavoritePage> {
                           });
                         },
                         child: Icon(Icons.thumb_down_alt_outlined,
-                            color: status == false? Colors.red:Colors.teal[200]))),
+                            color: status == false
+                                ? Colors.red
+                                : Colors.teal[200]))),
               ],
             ),
           ),
