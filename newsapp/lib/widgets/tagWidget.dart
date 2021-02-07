@@ -41,16 +41,16 @@ class _TagWidgetState extends State<TagWidget> {
                   child: Container(
                     padding: EdgeInsets.all(5),
                     child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    widget.tagTitle,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.teal[200],
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        widget.tagTitle,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.teal[200],
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 )

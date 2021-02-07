@@ -30,7 +30,6 @@ class _MainPageState extends State<MainPage> {
         activeColor: Colors.teal[200],
         inactiveColor: Colors.grey,
         activeColorAlternate: Colors.white,
-
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.book),
@@ -40,13 +39,12 @@ class _MainPageState extends State<MainPage> {
       ),
     ];
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PersistentTabView(
         context,
-        
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),

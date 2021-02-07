@@ -21,7 +21,7 @@ class _ListPageState extends State<ListPage> {
       body: Container(
         padding: EdgeInsets.only(top: 10),
         child: StreamBuilder(
-          //connection with readLater collection-firebase
+            //connection with readLater collection-firebase
             stream:
                 FirebaseFirestore.instance.collection("readLater").snapshots(),
             builder:
@@ -66,39 +66,44 @@ class _ListPageState extends State<ListPage> {
                   child: ListView(
                       children: snapshot.data.docs
                           .map((doc) => Hero(
-                            tag: doc["url"],
-                                                      child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailsPage(
-                                              doc["task_title"],
-                                              doc["image"],
-                                              doc["url"],
-                                              doc["description"],
-                                              doc["source"],
-                                              false)));
-                                },
-                                child: Slidable(
-                                  actionPane: SlidableDrawerActionPane(),
-                                  secondaryActions: [IconSlideAction(
-                                color: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.cancel_outlined,
-                                onTap: () {
-                                  //delete data through Slidable 
-                                  FirebaseFuncs().deleteData(doc["url"], "readLater",flushBarerrorMsg:"This news has been deleted to the Read List.",context:context);
-                                },
-                              ),],
-                                  child: TagWidget(
-                                      doc["task_title"], doc["image"]),
-                                )),
-                          ))
+                                tag: doc["url"],
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DetailsPage(
+                                                  doc["task_title"],
+                                                  doc["image"],
+                                                  doc["url"],
+                                                  doc["description"],
+                                                  doc["source"],
+                                                  false)));
+                                    },
+                                    child: Slidable(
+                                      actionPane: SlidableDrawerActionPane(),
+                                      secondaryActions: [
+                                        IconSlideAction(
+                                          color: Colors.red,
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.cancel_outlined,
+                                          onTap: () {
+                                            //delete data through Slidable
+                                            FirebaseFuncs().deleteData(
+                                                doc["url"], "readLater",
+                                                flushBarerrorMsg:
+                                                    "This news has been deleted to the Read List.",
+                                                context: context);
+                                          },
+                                        ),
+                                      ],
+                                      child: TagWidget(
+                                          doc["task_title"], doc["image"]),
+                                    )),
+                              ))
                           .toList()));
             }),
       ),
     );
   }
-
 }

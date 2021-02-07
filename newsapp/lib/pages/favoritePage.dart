@@ -18,9 +18,9 @@ class _FavoritePageState extends State<FavoritePage> {
       appBar: AppBar(
         backgroundColor: Colors.teal[200],
       ),
-      body: 
-      //Icons for selection of data to show 
-      Column(
+      body:
+          //Icons for selection of data to show
+          Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 10),
@@ -65,7 +65,7 @@ class _FavoritePageState extends State<FavoritePage> {
           Container(
             padding: EdgeInsets.only(top: 10),
             child: StreamBuilder(
-              //connection with favorites or unfavorites collection-firebase
+                //connection with favorites or unfavorites collection-firebase
                 stream: FirebaseFirestore.instance
                     .collection(status == true ? "favorites" : "unfavorites")
                     .snapshots(),
@@ -113,35 +113,46 @@ class _FavoritePageState extends State<FavoritePage> {
                       child: ListView(
                           children: snapshot.data.docs
                               .map((doc) => Hero(
-                                tag: doc["url"],
-                                                              child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => DetailsPage(
-                                                  doc["task_title"],
-                                                  doc["image"],
-                                                  doc["url"],
-                                                  doc["description"],
-                                                  doc["source"],
-                                                  true)));
-                                    },
-                                    child: Slidable(
-                                  actionPane: SlidableDrawerActionPane(),
-                                  secondaryActions: [IconSlideAction(
-                                color: Colors.red,
-                                foregroundColor: Colors.white,
-                                icon: Icons.cancel_outlined,
-                                onTap: () {
-                                  //delete data through Slidable 
-                                  FirebaseFuncs().deleteData(doc["url"], status == true ? "favorites" : "unfavorites",flushBarerrorMsg:"This news has been deleted to the List.",context:context);
-                                },
-                            ),],
-                                  child: TagWidget(
-                                      doc["task_title"], doc["image"]),
-                                )),
-                              ))
+                                    tag: doc["url"],
+                                    child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailsPage(
+                                                          doc["task_title"],
+                                                          doc["image"],
+                                                          doc["url"],
+                                                          doc["description"],
+                                                          doc["source"],
+                                                          true)));
+                                        },
+                                        child: Slidable(
+                                          actionPane:
+                                              SlidableDrawerActionPane(),
+                                          secondaryActions: [
+                                            IconSlideAction(
+                                              color: Colors.red,
+                                              foregroundColor: Colors.white,
+                                              icon: Icons.cancel_outlined,
+                                              onTap: () {
+                                                //delete data through Slidable
+                                                FirebaseFuncs().deleteData(
+                                                    doc["url"],
+                                                    status == true
+                                                        ? "favorites"
+                                                        : "unfavorites",
+                                                    flushBarerrorMsg:
+                                                        "This news has been deleted to the List.",
+                                                    context: context);
+                                              },
+                                            ),
+                                          ],
+                                          child: TagWidget(
+                                              doc["task_title"], doc["image"]),
+                                        )),
+                                  ))
                               .toList()));
                 }),
           ),

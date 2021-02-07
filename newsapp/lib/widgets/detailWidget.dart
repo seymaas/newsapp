@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:newsapp/funcs/firebaseFuncs.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,16 +5,16 @@ import 'package:url_launcher/url_launcher.dart';
 class DetailsWidget extends StatefulWidget {
   final String newstitle, newsImage, newsURL, newsDescription, newsSource;
   final bool isfavoritepage;
-  DetailsWidget(this.newstitle, this.newsImage, this.newsURL,this.newsDescription, this.newsSource,this.isfavoritepage);
+  DetailsWidget(this.newstitle, this.newsImage, this.newsURL,
+      this.newsDescription, this.newsSource, this.isfavoritepage);
   @override
   _DetailsWidgetState createState() => _DetailsWidgetState();
 }
 
 class _DetailsWidgetState extends State<DetailsWidget> {
- 
   TextEditingController titlecontroller = TextEditingController();
   TextEditingController notecontroller = TextEditingController();
-  bool like,dislike ;
+  bool like, dislike;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,66 +47,90 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       ),
                     ),
                     //favorite&unfavorite
-                    
+
                     //not put buttons if used for favorite page
-                    widget.isfavoritepage == true?Container() 
-                    :Expanded(
-                      flex: 2,
-                      child: Row(
-                        children: [
-                          InkWell(
-                            splashColor: Colors.green[900],
-                            onTap: () {
-                              if (like == true) {
-                                setState(() {
-                                  like = false;
-                                  FirebaseFuncs().deleteData(widget.newsURL,"favorites");
-                                });
-                              } else {
-                                setState(() {
-                                  like = true;
-                                  dislike = false;
-                                  FirebaseFuncs().addData(true,widget.newstitle, widget.newsDescription,widget.newsImage,widget.newsSource, widget.newsURL,"favorites",flushBarerrorMsg:"This news has been added to the Favorite List",context: context);
-                                  FirebaseFuncs().deleteData(widget.newsURL,"unfavorites");
-                                });
-                              }
-                            },
-                            child: Icon(
-                              Icons.thumb_up_alt_outlined,
-                              size: 25,
-                              color: Colors.green,
+                    widget.isfavoritepage == true
+                        ? Container()
+                        : Expanded(
+                            flex: 2,
+                            child: Row(
+                              children: [
+                                InkWell(
+                                  splashColor: Colors.green[900],
+                                  onTap: () {
+                                    if (like == true) {
+                                      setState(() {
+                                        like = false;
+                                        FirebaseFuncs().deleteData(
+                                            widget.newsURL, "favorites");
+                                      });
+                                    } else {
+                                      setState(() {
+                                        like = true;
+                                        dislike = false;
+                                        FirebaseFuncs().addData(
+                                            true,
+                                            widget.newstitle,
+                                            widget.newsDescription,
+                                            widget.newsImage,
+                                            widget.newsSource,
+                                            widget.newsURL,
+                                            "favorites",
+                                            flushBarerrorMsg:
+                                                "This news has been added to the Favorite List",
+                                            context: context);
+                                        FirebaseFuncs().deleteData(
+                                            widget.newsURL, "unfavorites");
+                                      });
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.thumb_up_alt_outlined,
+                                    size: 25,
+                                    color: Colors.green,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  splashColor: Colors.red[900],
+                                  onTap: () {
+                                    if (dislike == true) {
+                                      setState(() {
+                                        dislike = false;
+                                        FirebaseFuncs().deleteData(
+                                            widget.newsURL, "unfavorites");
+                                      });
+                                    } else {
+                                      setState(() {
+                                        dislike = true;
+                                        like = false;
+                                        FirebaseFuncs().addData(
+                                            false,
+                                            widget.newstitle,
+                                            widget.newsDescription,
+                                            widget.newsImage,
+                                            widget.newsSource,
+                                            widget.newsURL,
+                                            "unfavorites",
+                                            flushBarerrorMsg:
+                                                "This news has been added to the Unfavorite List.",
+                                            context: context);
+                                        FirebaseFuncs().deleteData(
+                                            widget.newsURL, "favorites");
+                                      });
+                                    }
+                                  },
+                                  child: Icon(
+                                    Icons.thumb_down_outlined,
+                                    size: 25,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                      width: 10,
-                    ),InkWell(
-                        splashColor: Colors.red[900],
-                        onTap: () {
-                          if (dislike == true) {
-                            setState(() {
-                              dislike = false;
-                              FirebaseFuncs().deleteData(widget.newsURL,"unfavorites");
-                            });
-                          } else {
-                            setState(() {
-                              dislike = true;
-                              like = false;
-                              FirebaseFuncs().addData(false,widget.newstitle, widget.newsDescription,widget.newsImage,widget.newsSource, widget.newsURL,"unfavorites",flushBarerrorMsg: "This news has been added to the Unfavorite List.",context: context);
-                              FirebaseFuncs().deleteData(widget.newsURL,"favorites");
-                            });
-                          }
-                        },
-                        child: Icon(
-                          Icons.thumb_down_outlined,
-                          size: 25,
-                          color: Colors.red,
-                        ),
-                      ),
-                        ],
-                      ),
-                    ),
-                    
-                    
                   ],
                 ),
                 Padding(
@@ -122,7 +145,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                   children: [
                     Hero(
                       tag: widget.newsURL,
-                                          child: Container(
+                      child: Container(
                         height: 200,
                         width: double.infinity,
                         child: Image.network(
@@ -131,7 +154,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                         ),
                       ),
                     ),
-                    //source 
+                    //source
                     Positioned(
                         right: 5,
                         top: 5,
@@ -222,7 +245,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   child: FlatButton(
-                    
                     color: Colors.teal[200],
                     padding: EdgeInsets.only(left: 32, right: 32),
                     splashColor: Colors.white,
@@ -237,7 +259,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ],
             )));
   }
-  
+
   Future<void> _launch(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -245,10 +267,4 @@ class _DetailsWidgetState extends State<DetailsWidget> {
       throw 'Could not launch $url';
     }
   }
-  
-    
-  
-  
-  
-  
 }

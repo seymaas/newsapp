@@ -13,22 +13,17 @@ class CategoryWidget extends StatefulWidget {
 class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
-    
     //to go TagPage with category title
     return InkWell(
-      onTap: () =>
-        pushNewScreen(
-          context,
-          screen: TagPage(widget.categoryTitle),
-          
-        ),
-      
+      onTap: () => pushNewScreen(
+        context,
+        screen: TagPage(widget.categoryTitle),
+      ),
       child: Padding(
         padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
         child: Card(
           child: Column(
             children: <Widget>[
-
               //image
               Container(
                 height: MediaQuery.of(context).size.height / 6,

@@ -81,7 +81,16 @@ class _TagPageState extends State<TagPage> {
                           tag: category.result[index].url,
                           child: GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage(category.result[index].name,category.result[index].image,category.result[index].url,category.result[index].description,category.result[index].source,false)));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailsPage(
+                                            category.result[index].name,
+                                            category.result[index].image,
+                                            category.result[index].url,
+                                            category.result[index].description,
+                                            category.result[index].source,
+                                            false)));
                               },
                               //show datas through TagWidget
                               child: TagWidget(category.result[index].name,

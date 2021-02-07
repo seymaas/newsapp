@@ -15,7 +15,7 @@ class _CategoryPageState extends State<CategoryPage> {
         appBar: AppBar(
           backgroundColor: Colors.teal[200],
         ),
-        body: Column(children: <Widget>[ 
+        body: Column(children: <Widget>[
           //show data through CategoryWidget
           Expanded(
             child: CategoryWidget("General",
