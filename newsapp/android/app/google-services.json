@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "844363797327",
+    "project_id": "foodapp-185c3",
+    "storage_bucket": "foodapp-185c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844363797327:android:1a42dfd8de89ce60bceb3a",
+        "android_client_info": {
+          "package_name": "com.example.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844363797327-1f44bniihl7hab94p4oitjksu2v63fhg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjiZkmDxWVDtpDu_oBt1uKwId_EXtcAw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844363797327-1f44bniihl7hab94p4oitjksu2v63fhg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "844363797327-ea9klpdak300jk2oc9tec3a95isk7t0o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.newsapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
